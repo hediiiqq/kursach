@@ -1,0 +1,33 @@
+@model kursach.Models.BaseModel
+
+
+<h2>Create recipe</h2>
+<form asp-action="create" asp-controller="Base" method="post">
+    <p>
+        <label asp-for="Title">Title</label>
+        <input type="text" asp-for="Title"/>
+    </p>
+    <p>
+        <label asp-for="ImageURL">ImageURL</label>
+        <input type="text" asp-for="ImageURL"/>
+    </p>
+    <p>
+        <label asp-for="ShortDescription">ShortDescription</label>
+        <input type="text" asp-for="ShortDescription"/>
+    </p>
+    <p>
+        <label asp-for="TimeToCookInMinutes">TimeToCookInMinutes</label>
+        <input type="text" asp-for="TimeToCookInMinutes"/>
+    </p>
+    <p>
+        <label asp-for="Ingridients">Ingridients</label>
+        <input type="text" asp-for="Ingridients"/>
+    </p>
+    <p>
+        <label asp-for="FullDescription">FullDescription</label>
+        <input type="text" asp-for="FullDescription"/>
+    </p>
+    <button type="submit">Create</button>
+
+</form>
+

@@ -169,3 +169,5 @@
 /Users/whymiutu31/Documents/Дз/2й курс 2 семестр/технологии програмирования/kursach/kursach/obj/Debug/net10.0/kursach.pdb
 /Users/whymiutu31/Documents/Дз/2й курс 2 семестр/технологии програмирования/kursach/kursach/obj/Debug/net10.0/kursach.genruntimeconfig.cache
 /Users/whymiutu31/Documents/Дз/2й курс 2 семестр/технологии програмирования/kursach/kursach/obj/Debug/net10.0/ref/kursach.dll
+/Users/whymiutu31/Documents/Дз/2й курс 2 семестр/технологии програмирования/kursach/kursach/obj/Debug/net10.0/kursach.sourcelink.json
+/Users/whymiutu31/Documents/Дз/2й курс 2 семестр/технологии програмирования/kursach/kursach/obj/Debug/net10.0/compressed/6mm2wwrpyb-{0}-bnmf6dfp52-bnmf6dfp52.gz

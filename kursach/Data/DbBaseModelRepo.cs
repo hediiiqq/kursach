@@ -6,45 +6,45 @@ namespace kursach.Data;
 
 public class DbBaseModelRepo : IRepository<BaseModel>
 {
-    private AppDbContext context;
+    private readonly AppDbContext db;
 
-    public DbBaseModelRepo(AppDbContext context)
+    public DbBaseModelRepo(AppDbContext db)
     {
-        this.context = context;
+        this.db = db;
     }
 
     public IEnumerable<BaseModel> GetAllList()
     {
-        return context.BaseModels;
+        return db.BaseModels;
     }
 
     public BaseModel GetById(int id)
     {
-        return context.BaseModels.Find(id);
+        return db.BaseModels.Find(id);
     }
 
     public void Create(BaseModel item)
     {
-        context.BaseModels.Add(item);
+        db.BaseModels.Add(item);
     }
 
     public void Update(BaseModel item)
     {
-        context.Entry(item).State = EntityState.Modified;
+        db.Entry(item).State = EntityState.Modified;
     }
 
     public void Delete(BaseModel item)
     {
-        BaseModel baseModel = context.BaseModels.Find(item.Id);
+        BaseModel baseModel = db.BaseModels.Find(item.Id);
         if (baseModel != null)
         {
-            context.BaseModels.Remove(baseModel);
+            db.BaseModels.Remove(baseModel);
         }
     }
 
     public void SaveChanges()
     {
-        context.SaveChanges();
+        db.SaveChanges();
     }
 
     private bool disposed = false;
@@ -55,7 +55,7 @@ public class DbBaseModelRepo : IRepository<BaseModel>
         {
             if (disposing)
             {
-                context.Dispose();
+                db.Dispose();
             }
         }
         this.disposed = true;

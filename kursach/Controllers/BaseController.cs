@@ -34,6 +34,7 @@ public class BaseController : Controller
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         return View(baseModel);
     }
 
@@ -52,6 +53,7 @@ public class BaseController : Controller
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         return View(baseModel);
     }
 
