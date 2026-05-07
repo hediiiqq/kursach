@@ -4,41 +4,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace kursach.Data;
 
-public class DbBaseModelRepo : IRepository<BaseModel>
+public class DbBaseModelRepo : IRepository<GameModel>
 {
     private readonly AppDbContext db;
+
+    private bool disposed = false;
 
     public DbBaseModelRepo(AppDbContext db)
     {
         this.db = db;
     }
 
-    public IEnumerable<BaseModel> GetAllList()
+    public IEnumerable<GameModel> GetAllList()
     {
-        return db.BaseModels;
+        return db.GamesList;
     }
 
-    public BaseModel GetById(int id)
+    public GameModel? GetById(int id)
     {
-        return db.BaseModels.Find(id);
+        return db.GamesList.Find(id);
     }
 
-    public void Create(BaseModel item)
+    public void Create(GameModel item)
     {
-        db.BaseModels.Add(item);
+        db.GamesList.Add(item);
     }
 
-    public void Update(BaseModel item)
+    public void Update(GameModel item)
     {
         db.Entry(item).State = EntityState.Modified;
     }
 
-    public void Delete(BaseModel item)
+    public void Delete(GameModel item)
     {
-        BaseModel baseModel = db.BaseModels.Find(item.Id);
+        GameModel? baseModel = db.GamesList.Find(item.Id);
         if (baseModel != null)
         {
-            db.BaseModels.Remove(baseModel);
+            db.GamesList.Remove(baseModel);
         }
     }
 
@@ -47,7 +49,11 @@ public class DbBaseModelRepo : IRepository<BaseModel>
         db.SaveChanges();
     }
 
-    private bool disposed = false;
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
     public virtual void Dispose(bool disposing)
     {
@@ -58,11 +64,7 @@ public class DbBaseModelRepo : IRepository<BaseModel>
                 db.Dispose();
             }
         }
+
         this.disposed = true;
-    }
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
     }
 }

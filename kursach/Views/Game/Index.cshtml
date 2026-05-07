@@ -1,0 +1,32 @@
+﻿@model IEnumerable<kursach.Models.GameModel>
+@section Styles{
+    <link rel="stylesheet" href="css/index.css" asp-append-version="true"/>
+}
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Games List</h1>
+    <p><a asp-controller="Game" asp-action="Create">Create item</a></p>
+</div>
+<section class="catalog-grid">
+    @foreach (var item in Model)
+    {
+        <article class="product-card">
+            <div class="product-card-body">
+                <p align="center">@item.Title</p>
+                <p><img src="@item.ImageURL" alt="@item.Title img"/></p>
+                <p>@item.ShortDescription</p>
+                <p>@item.ReleaseDate - ReleaseDate</p>
+                <p>@item.TimeOfPassage - Time of passage</p>
+                <p>
+                    <a asp-action="Edit" asp-controller="Game" asp-route-id="@item.Id">Edit</a>
+                </p>
+                <form asp-controller="Game" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </div>
+        </article>
+    }
+</section>

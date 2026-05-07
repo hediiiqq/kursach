@@ -21,6 +21,71 @@ body {
   margin-bottom: 60px;
 }
 
+.game-form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 32px;
+  align-items: start;
+}
+
+.game-form-fields p {
+  margin-bottom: 16px;
+}
+
+.game-form-fields label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.game-form-fields input,
+.game-form-fields textarea {
+  width: 100%;
+  max-width: 560px;
+  padding: 8px 10px;
+}
+
+.game-form-fields textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.game-preview {
+  position: sticky;
+  top: 20px;
+  padding: 16px;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.game-preview img {
+  display: none;
+  width: 240px;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+
+.game-preview h3 {
+  margin-bottom: 12px;
+}
+
+.game-preview p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+  .game-form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .game-preview {
+    position: static;
+  }
+}
+
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;

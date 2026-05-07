@@ -31,11 +31,7 @@ body {
     padding: 18px;
 }
 
-
-@media (max-width: 900px) {
-
-    .catalog-grid {
-        grid-template-columns: 1fr;
-    }
+img {
+    width: 500px;
+    max-height: 100%;
 }
-

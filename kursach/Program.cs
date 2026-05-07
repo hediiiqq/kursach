@@ -9,17 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IRepository<BaseModel>, DbBaseModelRepo>();
+builder.Services.AddScoped<IRepository<GameModel>, DbBaseModelRepo>();
 
 var app = builder.Build();
-
 
 
 app.MapStaticAssets();
 
 app.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Base}/{action=Index}/{id?}")
+        pattern: "{controller=Game}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

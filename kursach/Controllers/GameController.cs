@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace kursach.Controllers;
 
-public class BaseController : Controller
+public class GameController : Controller
 {
-    private readonly IRepository<BaseModel> db;
+    private readonly IRepository<GameModel> db;
 
-    public BaseController(IRepository<BaseModel> db)
+    public GameController(IRepository<GameModel> db)
     {
         this.db = db;
     }
@@ -26,48 +26,63 @@ public class BaseController : Controller
     }
 
     [HttpPost]
-    public ActionResult Create(BaseModel baseModel)
+    public ActionResult Create(GameModel gameModel)
     {
         if (ModelState.IsValid)
         {
-            db.Create(baseModel);
+            db.Create(gameModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        return View(baseModel);
+        return View(gameModel);
     }
 
     public ActionResult Edit(int id)
     {
-        BaseModel baseModel = db.GetById(id);
+        GameModel? baseModel = db.GetById(id);
+        if (baseModel == null)
+        {
+            return NotFound();
+        }
+
         return View(baseModel);
     }
 
     [HttpPost]
-    public ActionResult Edit(BaseModel baseModel)
+    public ActionResult Edit(GameModel gameModel)
     {
         if (ModelState.IsValid)
         {
-            db.Update(baseModel);
+            db.Update(gameModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        return View(baseModel);
+        return View(gameModel);
     }
 
     [HttpGet]
     public ActionResult Delete(int id)
     {
-        BaseModel baseModel = db.GetById(id);
+        GameModel? baseModel = db.GetById(id);
+        if (baseModel == null)
+        {
+            return NotFound();
+        }
+
         return View(baseModel);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-        BaseModel baseModel = db.GetById(id);
+        GameModel? baseModel = db.GetById(id);
+        if (baseModel == null)
+        {
+            return NotFound();
+        }
+
         db.Delete(baseModel);
         db.SaveChanges();
 

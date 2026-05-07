@@ -1,0 +1,80 @@
+@model kursach.Models.GameModel
+
+<h2>Edit item</h2>
+
+<form asp-action="Edit" asp-controller="Game" asp-route-id="@Model.Id" method="post">
+    <section class="game-form-layout">
+        <div class="game-form-fields">
+            <p>
+                <label asp-for="Title">Title</label>
+                <input type="text" asp-for="Title" id="titleInput"/>
+            </p>
+            <p>
+                <label asp-for="ImageURL">ImageURL</label>
+                <input type="text" asp-for="ImageURL" id="imageUrlInput"/>
+            </p>
+            <p>
+                <label asp-for="ShortDescription">Short Description</label>
+                <textarea asp-for="ShortDescription" id="shortDescriptionInput"
+                          placeholder="Enter Short Description"></textarea>
+            </p>
+            <p>
+                <label asp-for="ReleaseDate">Release Date</label>
+                <input type="text" asp-for="ReleaseDate" id="releaseDateInput"/>
+            </p>
+            <p>
+                <label asp-for="TimeOfPassage">Time of Passage</label>
+                <input type="text" asp-for="TimeOfPassage" id="timeOfPassageInput"/>
+            </p>
+            <button type="submit">Submit</button>
+        </div>
+
+        <aside class="game-preview">
+            <img id="previewImage" src="@Model.ImageURL"/>
+            <h3 id="previewTitle">@Model.Title</h3>
+            <p id="previewShortDescription">@Model.ShortDescription</p>
+            <p id="previewReleaseDate">@Model.ReleaseDate</p>
+            <p id="previewTimeOfPassage">@Model.TimeOfPassage</p>
+        </aside>
+    </section>
+</form>
+
+<script>
+    const titleInput = document.getElementById('titleInput');
+    const imageUrlInput = document.getElementById('imageUrlInput');
+    const shortDescriptionInput = document.getElementById('shortDescriptionInput');
+    const releaseDateInput = document.getElementById('releaseDateInput');
+    const timeOfPassageInput = document.getElementById('timeOfPassageInput');
+
+    const previewImage = document.getElementById('previewImage');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewShortDescription = document.getElementById('previewShortDescription');
+    const previewReleaseDate = document.getElementById('previewReleaseDate');
+    const previewTimeOfPassage = document.getElementById('previewTimeOfPassage');
+
+    function updatePreview() {
+        previewTitle.textContent = titleInput.value || 'Title';
+        previewShortDescription.textContent = shortDescriptionInput.value || 'Short Description';
+        previewReleaseDate.textContent = releaseDateInput.value || 'Release Date';
+        previewTimeOfPassage.textContent = timeOfPassageInput.value || 'Time of Passage';
+
+
+        if (imageUrlInput.value) {
+            previewImage.src = imageUrlInput.value;
+            previewImage.style.display = 'block';
+        } else {
+            previewImage.removeAttribute('src');
+            previewImage.style.display = 'none';
+        }
+    }
+
+    [titleInput, imageUrlInput, shortDescriptionInput, releaseDateInput, timeOfPassageInput,].forEach(function (field) {
+        field.addEventListener('input', updatePreview);
+    });
+
+    previewImage.addEventListener('error', function () {
+        previewImage.style.display = 'none';
+    });
+
+    updatePreview();
+</script>
